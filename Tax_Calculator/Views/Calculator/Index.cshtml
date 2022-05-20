@@ -1,0 +1,72 @@
+﻿@model Tax_Calculator.Models.Calculator
+
+@{
+    ViewBag.Title = "Tax_Calculator";
+}
+<html>
+<head>
+
+   
+</head>
+<body>
+    <h2>
+        Tax Calculator
+    </h2>
+    <div class="row">
+        @using (Html.BeginForm("Index", "Calculator", FormMethod.Post))
+        {
+            <br />
+            <button type="submit" class="btn btn-info" id="reset" value="reset" name="resettozero">
+                Reset
+            </button>
+            <br />
+            <br />
+            <div class="form-group">
+                <label for="net">
+                    Net Price (price without VAT)
+                </label>
+                <input type="number" step="any" class="form-control" id="net" name="net" value="@Model.net" />
+            </div>
+            <div class="form-group">
+                <label for="gross">
+                    Gross Price (price with VAT)
+                </label>
+                <input type="number" step="any" class="form-control" id="gross" name="gross" value="@Model.gross" />
+            </div>
+
+
+
+            <div class="form-group">
+                <label for="vatAmount">
+                    VAT Amount
+                </label>
+                <input type="number" step="any" class="form-control" id="vatAmount" name="vatAmount" value="@Model.vatAmount" />
+            </div>
+            <div class="form-group">
+                <label for="vatRate">
+                    VAT Rate
+                </label>
+
+                10%
+                <input id="vatRate" checked name="vatRate" value="10" type="radio">
+                13%
+                <input id="vatRate" checked name="vatRate" value="13" type="radio">
+                20%
+                <input id="vatRate" checked name="vatRate" value="20" type="radio">
+            </div>
+            <button type="submit" class="btn btn-info" id="add" value="add" name="calculate">
+                Calculate
+            </button>
+        }
+        @if (ViewBag.Message != null)
+        {
+            <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            };
+            </script>
+        }
+    </div>
+    
+</body>
+</html>
